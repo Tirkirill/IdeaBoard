@@ -7,6 +7,7 @@ class RegistrationForm extends EnterForm {
         this.buttonValue = 'Зарегистрироваться';
         this.refTitle = 'Вход';
         this.refNote = 'У вас уже есть аккаунт? ';
+        this.ref='/login';
     }
 
     SubmitHandler(evt) {

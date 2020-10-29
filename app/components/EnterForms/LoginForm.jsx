@@ -7,6 +7,7 @@ class LoginForm extends EnterForm {
         this.buttonValue = 'Войти';
         this.refTitle = 'Регистрация';
         this.refNote = 'У вас еще нет аккаунта? ';
+        this.ref='/registration';
     }
 
     SubmitHandler(evt) {
