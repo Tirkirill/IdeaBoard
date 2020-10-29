@@ -1,5 +1,6 @@
 import React from "react";
-import EnterFrom from "./components/EnterForm.jsx";
+import EnterForm from "./components/EnterForms/EnterForm.jsx";
+import LoginForm from "./components/EnterForms/LoginForm.jsx";
 
 class App extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class App extends React.Component {
 
     render() {
         return(
-            <EnterFrom/>
+            <LoginForm/>
         )
     }
 }
