@@ -7,7 +7,14 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.logInto = this.logInto.bind(this);
     }
+
+    logInto(user) {
+        console.log(user);
+        this.setState({user: user});
+    }
+
 
     render() {
         return(
@@ -18,7 +25,7 @@ class App extends React.Component {
                         <RegistrationForm />
                     </Route>
                     <Route exact path="/login">
-                        <LoginForm />
+                        <LoginForm logInto={this.logInto}/>
                     </Route>
                     <Route exact path="/">
                         <div>Привет!</div>
