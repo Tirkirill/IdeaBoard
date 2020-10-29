@@ -1,0 +1,14 @@
+.center-container {
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 203, 0);
+
+    .form-container {
+        min-width:300px;
+        min-height:500px;
+        background-color: white;
+        box-shadow: 0 0 20px 5px gray;
+    }
+}

@@ -8,7 +8,9 @@ class EnterForm extends React.Component {
     render() {
         return(
             <div class='center-container'>
-                <div>Hello!</div>
+                <div class='form-container'>
+
+                </div>
             </div>
         )
     }
