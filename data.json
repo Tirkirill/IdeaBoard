@@ -9,6 +9,21 @@
       "id": 2,
       "email": "b@mail.ru",
       "password": "223456"
+    },
+    {
+      "email": "c@mail.ru",
+      "password": "123456",
+      "id": 3
+    },
+    {
+      "email": "d@mail.ru",
+      "password": "123456",
+      "id": 4
+    },
+    {
+      "email": "e@mail.ru",
+      "password": "123456",
+      "id": 5
     }
   ]
 }

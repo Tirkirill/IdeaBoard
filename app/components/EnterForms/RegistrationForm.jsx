@@ -31,8 +31,11 @@ class RegistrationForm extends EnterForm {
                 error.innerHTML = 'Такой пользователь уже существует';
             }
             else {
-                console.log('Создаем!')
-                API.createNewUser({email:email, password:passwordInput.value}).then(()=>console.log('Вышло!'))
+                let user = {email:email, password: passwordInput.value}
+                API.createNewUser(user).then((res)=>{
+                    this.props.logInto(res.data);
+                    this.setState({done:true});
+                })
             }
         }
 

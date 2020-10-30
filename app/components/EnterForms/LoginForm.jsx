@@ -29,8 +29,8 @@ class LoginForm extends EnterForm {
             else {
                 error.innerHTML = '';
                 if (res[0].password == passwordInput.value) {
-                    this.setState({done:true});
                     this.props.logInto(res[0]);
+                    this.setState({done:true});
                     return;
                 }
                 error.innerHTML = 'Вы ввели неверный пароль';
