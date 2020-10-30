@@ -17,12 +17,13 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        let user = JSON.parse(sessionStorage.getItem('user', user));
-        if (user) this.setState({user:user});
+        if (!this.state.user) {
+            let user = JSON.parse(sessionStorage.getItem('user', user));
+            if (user) this.setState({user:user});
+        }
     }
 
     render() {
-        console.log(this.state.user);
         return(
             <Router>
                 {!this.state.user && <Redirect to='/login'/>}

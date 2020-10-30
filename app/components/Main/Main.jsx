@@ -7,6 +7,7 @@ class Main extends React.Component {
     }
 
     render() {
+        if (!this.props.user) return null;
         return(
             <div>{this.props.user.email}</div>
         )
