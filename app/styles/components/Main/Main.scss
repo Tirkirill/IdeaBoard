@@ -1,0 +1,68 @@
+.navbar {
+    height:50px;
+    background-color: $violet;
+
+    .useremail {
+        color:white;
+        font-size:20px;
+        font-weight: bold;
+        margin:10px;
+        float:right;
+    }
+
+    .addButton {
+        display: inline-block;
+        margin:15px;
+        cursor: pointer;
+    }
+
+    .addButton::after {
+        display:block;
+        background-color: $yellow;
+        content: "";
+        width: 20px;
+        height: 7px;
+        position: relative;
+    }  
+    .addButton::before {
+        display:block;
+        background-color: $yellow;
+        content: "";
+        width: 20px;
+        height: 7px;
+        transform: rotate(90deg) translateX(7px);
+        position: relative;
+    }    
+
+    .addButton:active {
+        transform: scale(0.9);
+    }
+}
+
+.ideaList {
+    list-style: none;
+    display: flex;
+
+    li.idea {
+        width:150px;
+        height:200px;
+        background-color: white;
+        border: 3px solid $violet;
+
+        display:flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-right: 20px;
+
+        .idea-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: $violet;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 100%;
+            background-color: lightcyan;
+            text-align: center;
+        }
+    }
+}

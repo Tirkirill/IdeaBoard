@@ -24,6 +24,11 @@
       "email": "e@mail.ru",
       "password": "123456",
       "id": 5
+    },
+    {
+      "email": "f@mail.ru",
+      "password": "123456",
+      "id": 6
     }
   ]
 }
