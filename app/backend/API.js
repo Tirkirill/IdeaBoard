@@ -5,7 +5,7 @@ export function fetchUsersByEmail(email) {
     return fetch(endpoint+'users?email='+email, {"method":"GET"})
 }
 
-export function createNewUser(user) {
+export function CreateNewUser(user) {
     return axios.post(endpoint+'users', user);
 }
 

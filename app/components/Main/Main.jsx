@@ -34,7 +34,11 @@ class Main extends React.Component {
 
     componentDidMount() {
         $('.ideaList li').draggable(
-        {stop: this.props.stopDrag
+        {
+            stop: this.props.stopDrag,
+            cursor: "pointer",
+            containment: 'div.container',
+            grid: [100, 100]
         });
     }
 
@@ -42,7 +46,7 @@ class Main extends React.Component {
         if (!this.props.user) return null;
         console.log(this.props.user.ideas);
         return(
-            <div>
+            <div className='container'>
                 <div className='navbar'>
                     <div className='addButton' onClick={this.props.addIdea}></div>
                     <span className='useremail'>{this.props.user.email}</span>

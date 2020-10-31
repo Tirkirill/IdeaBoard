@@ -32,7 +32,7 @@ class RegistrationForm extends EnterForm {
             }
             else {
                 let user = {email:email, password: passwordInput.value}
-                API.createNewUser(user).then((res)=>{
+                API.CreateNewUser(user).then((res)=>{
                     this.props.logInto(res.data);
                     this.setState({done:true});
                 })
