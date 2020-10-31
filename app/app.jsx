@@ -31,6 +31,7 @@ class App extends React.Component {
         let id = event.target.id;
         newIdeas[id].X = ui.position.left;
         newIdeas[id].Y = ui.position.top;
+        sessionStorage.setItem('user', JSON.stringify(this.state.user));
         this.setState({user: {...this.state.user, ideas: newIdeas}})
     }
 
