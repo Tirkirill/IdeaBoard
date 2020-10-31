@@ -1,6 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import 'jquery-ui-dist/jquery-ui';
+import * as API from "../../backend/API";
 
 let posts = [
     {
@@ -22,57 +23,32 @@ let posts = [
 class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.addButton_click = this.addButton_click.bind(this);
-        let ideas = JSON.parse(sessionStorage.getItem('ideas'));
-        console.log(ideas);
-        if (ideas) this.state = {ideas:ideas};
-        else {
-            this.state = {ideas: posts};
-        }
-        this.stopDrag = this.stopDrag.bind(this);
-        
     }
 
     componentDidUpdate() {
         $('.ideaList li').draggable(
-            {stop: this.stopDrag
+            {stop: this.props.stopDrag
         });
-    }
-
-    addButton_click() {
-        this.setState({
-             ideas: this.state.ideas.concat({title: 'new', id: new Date().getTime()})
-        })
-    }
-
-    stopDrag(event, ui) {
-        let newIdeas = this.state.ideas.slice();        
-        let id = event.target.id;
-        newIdeas[id].X = ui.position.left;
-        newIdeas[id].Y = ui.position.top;
-        this.setState({ideas: newIdeas})
+        API.UpdateUserIdeas(this.props.user.id, {ideas: this.props.user.ideas});
     }
 
     componentDidMount() {
         $('.ideaList li').draggable(
-        {stop: this.stopDrag
+        {stop: this.props.stopDrag
         });
-    }
-
-    componentDidUpdate() {
-        sessionStorage.setItem('ideas', JSON.stringify(this.state.ideas));
     }
 
     render() {
         if (!this.props.user) return null;
+        console.log(this.props.user.ideas);
         return(
             <div>
                 <div className='navbar'>
-                    <div className='addButton' onClick={this.addButton_click}></div>
+                    <div className='addButton' onClick={this.props.addIdea}></div>
                     <span className='useremail'>{this.props.user.email}</span>
                 </div>
                 <ul className='ideaList'>
-                    {this.state.ideas.map((post, i)=> 
+                    {this.props.user.ideas.map((post, i)=> 
                     <li style={{top: post.Y, left: post.X}} className='idea' id={i} key={post.id}>
                         <div className='idea-title' >{post.title.length>10? post.title.slice(0, 10)+"...":post.title}</div>
                     </li>)}

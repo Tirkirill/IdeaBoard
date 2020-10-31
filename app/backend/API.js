@@ -6,5 +6,9 @@ export function fetchUsersByEmail(email) {
 }
 
 export function createNewUser(user) {
-    return axios.post('http://localhost:3000/users', user);
+    return axios.post(endpoint+'users', user);
+}
+
+export function UpdateUserIdeas(id, ideas) {
+    return axios.patch(endpoint+'users/'+id, ideas)
 }
