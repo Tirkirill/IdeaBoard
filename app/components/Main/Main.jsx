@@ -26,20 +26,23 @@ class Main extends React.Component {
     }
 
     componentDidUpdate() {
-        $('.ideaList li').draggable(
-            {stop: this.props.stopDrag
-        });
+        this.liDrag();
         API.UpdateUserIdeas(this.props.user.id, {ideas: this.props.user.ideas});
     }
 
-    componentDidMount() {
+
+    liDrag() {
         $('.ideaList li').draggable(
-        {
-            stop: this.props.stopDrag,
-            cursor: "pointer",
-            containment: 'div.container',
-            grid: [100, 100]
-        });
+            {
+                stop: this.props.stopDrag,
+                cursor: "pointer",
+                containment: 'div.container',
+                grid: [100, 100]
+        });  
+    }
+
+    componentDidMount() {
+        this.liDrag();
     }
 
     render() {
