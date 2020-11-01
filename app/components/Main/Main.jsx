@@ -56,8 +56,9 @@ class Main extends React.Component {
                 </div>
                 <ul className='ideaList'>
                     {this.props.user.ideas.map((post, i)=> 
-                    <li style={{top: post.Y, left: post.X}} className='idea' id={i} key={post.id}>
+                    <li style={{top: post.Y, left: post.X, position:"absolute"}} className='idea' id={i} key={post.id}>
                         <div className='idea-title' >{post.title.length>10? post.title.slice(0, 10)+"...":post.title}</div>
+                        <div>{post.text}</div>
                     </li>)}
                 </ul>
             </div>

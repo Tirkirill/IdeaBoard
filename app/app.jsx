@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./components/EnterForms/LoginForm.jsx";
 import RegistrationForm from "./components/EnterForms/RegistrationForm.jsx";
-import {BrowserRouter as Router, Redirect, NavLink, Switch, Route} from "react-router-dom";
+import {HashRouter as Router, Redirect, NavLink, Switch, Route, browserHistory} from "react-router-dom";
 import Main from "./components/Main/Main.jsx";
 
 
@@ -44,7 +44,7 @@ class App extends React.Component {
 
     render() {
         return(
-            <Router>
+            <Router history={browserHistory}>
                 {!this.state.user && <Redirect to='/login'/>}
                 <Switch>
                     <Route exact path="/registration">
