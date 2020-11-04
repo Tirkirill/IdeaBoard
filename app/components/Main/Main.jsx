@@ -23,6 +23,7 @@ let posts = [
 class Main extends React.Component {
     constructor(props) {
         super(props);
+        this.openDialog = this.openDialog.bind(this);
     }
 
     componentDidUpdate() {
@@ -51,8 +52,19 @@ class Main extends React.Component {
 
     openDialog(event) {
         let $target = event.target;
+        let id = event.target.id;
         $('.change-window').draggable();
         document.getElementsByClassName('change-window')[0].classList.add('displayed');
+        $('.change-window button').on('click', this.saveChange.bind(this, id));
+    }
+
+    saveChange(id) {
+        let titleInput = document.getElementById('titleInput');
+        let textInput = document.getElementById('textInput');
+        let title = titleInput.value;
+        let text = textInput.value;
+        this.props.changeIdea(id, text, title);
+        document.getElementsByClassName('change-window')[0].classList.remove('displayed');
     }
 
     render() {
@@ -68,13 +80,13 @@ class Main extends React.Component {
                     {this.props.user.ideas.map((post, i)=> 
                     <li onClick={this.openDialog} style={{top: post.Y, left: post.X, position:"absolute"}} className='idea' id={i} key={post.id}>
                         <div className='idea-title' >{post.title.length>10? post.title.slice(0, 10)+"...":post.title}</div>
-                        <div>{post.text}</div>
+                        <div className='idea-text'>{post.text}</div>
                     </li>)}
                 </ul>
                 <div className='change-window'>
-                    <input className='titleInput' placeholder='Введите заголовок'></input>
+                    <input id='titleInput' placeholder='Введите заголовок'></input>
                     <br></br>
-                    <textarea className='textInput' placeholder='Введите текст' rows='3'></textarea>
+                    <textarea id='textInput' placeholder='Введите текст' rows='3'></textarea>
                     <button>Сохранить!</button>
                 </div>
             </div>

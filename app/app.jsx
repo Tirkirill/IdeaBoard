@@ -12,6 +12,7 @@ class App extends React.Component {
         this.logInto = this.logInto.bind(this);
         this.stopDrag = this.stopDrag.bind(this);
         this.addIdea = this.addIdea.bind(this);
+        this.changeIdea = this.changeIdea.bind(this);
     }
 
     logInto(user) {
@@ -36,9 +37,16 @@ class App extends React.Component {
     }
 
     addIdea() {
-        
         this.setState({
             user: {...this.state.user, ideas: this.state.user.ideas.concat({title: 'new', id: new Date().getTime()})}
+       })
+    }
+
+    changeIdea(id, text, title) {
+        let newIdeas = this.state.user.ideas;
+        newIdeas[id] = {...newIdeas[id], title: title, text: text}
+        this.setState({
+            user: {...this.state.user, ideas: newIdeas}
        })
     }
 
@@ -54,7 +62,7 @@ class App extends React.Component {
                         <LoginForm logInto={this.logInto}/>
                     </Route>
                     <Route exact path="/">
-                        <Main user={this.state.user} stopDrag={this.stopDrag} addIdea={this.addIdea}/>
+                        <Main user={this.state.user} stopDrag={this.stopDrag} addIdea={this.addIdea} changeIdea={this.changeIdea}/>
                     </Route>
                 </Switch>
             </Router>
