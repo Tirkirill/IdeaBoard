@@ -1,5 +1,5 @@
 import React from "react";
-import $ from "jquery";
+import $, { trim } from "jquery";
 import 'jquery-ui-dist/jquery-ui';
 import * as API from "../../backend/API";
 
@@ -37,12 +37,22 @@ class Main extends React.Component {
                 stop: this.props.stopDrag,
                 cursor: "pointer",
                 containment: 'div.container',
-                grid: [100, 100]
-        });  
+                grid: [100, 100],
+                cancel: 'idea-title'
+        });
     }
+
+
+
 
     componentDidMount() {
         this.liDrag();
+    }
+
+    openDialog(event) {
+        let $target = event.target;
+        $('.change-window').draggable();
+        document.getElementsByClassName('change-window')[0].classList.add('displayed');
     }
 
     render() {
@@ -56,11 +66,17 @@ class Main extends React.Component {
                 </div>
                 <ul className='ideaList'>
                     {this.props.user.ideas.map((post, i)=> 
-                    <li style={{top: post.Y, left: post.X, position:"absolute"}} className='idea' id={i} key={post.id}>
+                    <li onClick={this.openDialog} style={{top: post.Y, left: post.X, position:"absolute"}} className='idea' id={i} key={post.id}>
                         <div className='idea-title' >{post.title.length>10? post.title.slice(0, 10)+"...":post.title}</div>
                         <div>{post.text}</div>
                     </li>)}
                 </ul>
+                <div className='change-window'>
+                    <input className='titleInput' placeholder='Введите заголовок'></input>
+                    <br></br>
+                    <textarea className='textInput' placeholder='Введите текст' rows='3'></textarea>
+                    <button>Сохранить!</button>
+                </div>
             </div>
         )
     }
