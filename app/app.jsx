@@ -50,6 +50,10 @@ class App extends React.Component {
        })
     }
 
+    componentDidUpdate() {
+        sessionStorage.setItem('user', JSON.stringify(this.state.user));
+    }
+
     render() {
         return(
             <Router history={browserHistory}>

@@ -51,11 +51,16 @@ class Main extends React.Component {
     }
 
     openDialog(event) {
-        let $target = event.target;
-        let id = event.target.id;
+        let target = event.target;
+        if (target.nodeName != 'LI') target = target.parentElement;
+        let id = target.id;
         $('.change-window').draggable();
         document.getElementsByClassName('change-window')[0].classList.add('displayed');
-        $('.change-window button').on('click', this.saveChange.bind(this, id));
+        document.getElementsByClassName('changeButton')[0].onclick = this.saveChange.bind(this, id);
+        let titleInput = document.getElementById('titleInput');
+        let textInput = document.getElementById('textInput');
+        titleInput.value = target.getElementsByClassName('idea-title')[0].textContent;
+        textInput.value = target.getElementsByClassName('idea-text')[0].textContent;
     }
 
     saveChange(id) {
@@ -63,13 +68,18 @@ class Main extends React.Component {
         let textInput = document.getElementById('textInput');
         let title = titleInput.value;
         let text = textInput.value;
+        if (!title || !text) return;
         this.props.changeIdea(id, text, title);
         document.getElementsByClassName('change-window')[0].classList.remove('displayed');
     }
 
+    onTextInputHandler(event) {
+        let target = event.target;
+        if (target.value.length > 160) target.value = target.value.slice(0,160);
+    }
+
     render() {
         if (!this.props.user) return null;
-        console.log(this.props.user.ideas);
         return(
             <div className='container'>
                 <div className='navbar'>
@@ -86,8 +96,8 @@ class Main extends React.Component {
                 <div className='change-window'>
                     <input id='titleInput' placeholder='Введите заголовок'></input>
                     <br></br>
-                    <textarea id='textInput' placeholder='Введите текст' rows='3'></textarea>
-                    <button>Сохранить!</button>
+                    <textarea id='textInput' onInput={this.onTextInputHandler} placeholder='Введите текст' rows='3'></textarea>
+                    <button className='changeButton'>Сохранить!</button>
                 </div>
             </div>
         )

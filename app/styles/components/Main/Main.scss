@@ -68,13 +68,17 @@
         }
         
         .idea-text {
+            margin-top:10px;
             height: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            width: 140px;
         }
     }
 }
 
 .change-window {
-    position: absolute;
+    position: fixed;
     bottom: 300px;
     left:200px;
     width: 350px;
